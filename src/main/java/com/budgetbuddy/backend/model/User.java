@@ -1,19 +1,27 @@
 package com.budgetbuddy.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 @Entity
+@Getter
+@Setter
+@Table(name = "\"user\"")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
+    private String username;
     private String name;
-    private String email;
     private String password;
-    private Boolean isMessageAccessPermissionGiven = false;
-    private String jwt;
+    private Boolean signedIn;
+    private Boolean userMessagePermission;
 }
