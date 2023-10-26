@@ -1,19 +1,29 @@
 package com.budgetbuddy.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 @Entity
+@Getter
+@Setter
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private String date;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long transactionId;
+
     private Double amount;
-    private String transactionTo;
     private String category;
+    private String transactionTo;
+    @Column(nullable = true)
+    private String transactionRefNo;
+    @ManyToOne
+    private User user;
+
 }
